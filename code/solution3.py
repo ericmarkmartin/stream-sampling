@@ -1,23 +1,23 @@
-"""Implementation of stream sampling using tags and a heap."""
+"""Implementation of stream sampling using probabilities."""
 import random
 
 import stream_sampler
 
 
 class SolutionThree(stream_sampler.StreamSampler):
-    """Stream sampler by storing tags in a heap."""
+    """Stream sampler without tags."""
 
     def __init__(self, k):
         """Initialize the stream sampler, setting k, the sample size."""
         self.current_sample = []
         self.k = k
-        self.i = 0
+        self.i = 1
 
     def update(self, x):
         """Inform the sampler of the next stream element."""
-        if self.i < self.k:
+        if self.i <= self.k:
             self.current_sample.append(x)
-        elif random.random() * self.i < 1:
+        elif random.random() * self.i < self.k:
             replace_idx = random.randrange(self.k)
             self.current_sample[replace_idx] = x
         self.i += 1

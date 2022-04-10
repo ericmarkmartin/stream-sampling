@@ -49,8 +49,8 @@ def test_sampler_stream(Sampler, stream_fn, k):
         sample_counter += Counter(sample)
 
     snapshot = tracemalloc.take_snapshot()
-    tracemalloc.stop()
     end = time.time()
+    tracemalloc.stop()
 
     total_time = end - start
     total_mem = sum(stat.size for stat in snapshot.statistics("lineno"))
@@ -65,7 +65,7 @@ def print_trial_results(k, numbers, num_samples, sample_counter, total_time, tot
     for number in set(numbers):
         num_pounds = int(sample_counter[number] * scale)
         pounds = "#" * num_pounds
-        print("{}: {}".format(number, pounds))
+        print("{:>2}: {}".format(number, pounds))
 
     print("Took {:.3f} seconds".format(total_time))
     print("Total allocated memory: {:.1f} MiB".format(total_mem / 1000))
@@ -78,7 +78,7 @@ def numbers_stream():
 
 def big_stream():
     """Emit a really long random stream."""
-    return (random.randrange(10) for _ in range(10_000))
+    return (i % 20 for i in range(10000))
 
 
 def test_sampler_k(sampler, k):

@@ -7,7 +7,7 @@ from solution3 import SolutionThree
 if __name__ == "__main__":
     solutions = [SolutionOne, SolutionTwo, SolutionThree]
     solution_names = ["solution 1", "solution 2", "solution 3"]
-    ks = [1, 5, 10, 20]
+    ks = [1, 5, 10, 20, 250]
     times = []
     memory_usages = []
 
@@ -28,11 +28,11 @@ if __name__ == "__main__":
         memory_usages.append(memory_row)
 
     print("TIME")
-    print("{:<15} {:<20} {:<20} {:<20} {:<20}".format("k", *ks))
+    print("{:<15} {:<20} {:<20} {:<20} {:<20} {:<20}".format("k", *ks))
     for solution_name, time_row in zip(solution_names, times):
-        print("{:<15} {:<20} {:<20} {:<20} {:<20}".format(solution_name, *time_row))
+        print("{:<15} {:<20} {:<20} {:<20} {:<20} {:<20}".format(solution_name, *time_row))
 
     print("SPACE")
-    print("{:<15} {:<20} {:<20} {:<20} {:<20}".format("k", *ks))
+    print("{:<15} {:<20} {:<20} {:<20} {:<20} {:<20}".format("k", *ks))
     for solution_name, space_row in zip(solution_names, memory_usages):
-        print("{:<15} {:<20} {:<20} {:<20} {:<20}".format(solution_name, *space_row))
+        print("{:<15} {:<20} {:<20} {:<20} {:<20} {:<20}".format(solution_name, *space_row))

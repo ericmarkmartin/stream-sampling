@@ -31,8 +31,7 @@
 \maketitle
 \thispagestyle{fancy}
 
-% \linespread{1.75}
-\onehalfspacing
+\doublespacing
 
 \begin{enumerate}[1.]
 \item %1
@@ -137,7 +136,7 @@
     Let's again go back to the $k=1$ case. Let $E_i$ denote the event in which
     we take the $i$th number as our current sample. We'll always take the first number we
     are given as the sample, so $\mathbb{P}[E_1] = 1$. What is
-    $\mathbb{P}[E_2]$? $\mathbb{P}[E_1]$?
+    $\mathbb{P}[E_2]$? $\mathbb{P}[E_i]$?
 
   \item %b
     How can we use this idea to make a new version of our sampler? What are the
@@ -149,14 +148,13 @@
     every number $x$ in a list of $n$ numbers, $\mathbb{P}[X = x] =
     \frac{1}{n}$? Assume that every number in the list is distinct.
 
-    \textit{Hint: try induction on $i$, the number of numbers we've run through
-      the sampler.}
+    \textit{Hint: try induction on $n$, the number of numbers I ultimately list.}
 
   \item %d
     Can we generalize this solution to work for a size $k$ sample?
 
   \item %e
-    This final solution is called \textit{reservoir sampling}, and is deployed
+    This final solution is called \textit{reservoir sampling} It's deployed
     in the real world in order to take samples from massive real-time data sets.
     What are it's time and space costs?
 
