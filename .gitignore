@@ -1,0 +1,10 @@
+*.aux
+*.gz
+*.log
+*.fls
+*.fdb_latexmk
+*.dvi
+/auto/
+/_region_.tex
+/.pdf-view-restore
+/code/__pycache__/
