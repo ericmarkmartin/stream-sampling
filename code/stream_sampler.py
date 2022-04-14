@@ -40,20 +40,20 @@ def test_sampler_stream(Sampler, stream_fn, k):
 
     num_samples = 1000
 
-    tracemalloc.start()
-    start = time.time()
+    total_time = 0
+    total_mem = 0
 
     for _ in range(num_samples):
         sampler = Sampler(k)
+        # tracemalloc.start()
+        start = time.time()
         sample = sampler.sample_stream(stream_fn())
+        end = time.time()
+        # snapshot = tracemalloc.take_snapshot()
+        # tracemalloc.stop()
+        total_time += end - start
+        # total_mem += sum(stat.size for stat in snapshot.statistics("lineno"))
         sample_counter += Counter(sample)
-
-    snapshot = tracemalloc.take_snapshot()
-    end = time.time()
-    tracemalloc.stop()
-
-    total_time = end - start
-    total_mem = sum(stat.size for stat in snapshot.statistics("lineno"))
 
     return (k, numbers, num_samples, sample_counter, total_time, total_mem)
 
@@ -73,7 +73,7 @@ def print_trial_results(k, numbers, num_samples, sample_counter, total_time, tot
 
 def numbers_stream():
     """Emit a stream containing the first 10 numbers."""
-    return (random.randrange(20) for _ in range(1_000))
+    return (i % 20 for i in range(1_000))
 
 
 def big_stream():
